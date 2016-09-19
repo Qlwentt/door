@@ -27,6 +27,11 @@ describe SkipBeat::Door do
 		default_door.unlock
 		expect(default_door.is_locked).must_equal(false)
 	end
+	
+	it "cannot be unlocked if it is already unlocked" do
+		expect(proc{closed_unlocked_door.unlock}).must_raise(RuntimeError)
+	end
+
 
 	it "can be opened if it is closed and unlocked" do
 		expect(default_door.is_open).must_equal(false)
@@ -48,9 +53,17 @@ describe SkipBeat::Door do
 		expect(proc{default_door.open}).must_raise(RuntimeError)
 	end
 
+	it "cannot be opened if it is already open" do
+		expect(proc{open_unlocked_door.open}).must_raise(RuntimeError)
+	end
+
 	it "can be closed if it is open" do
 		open_unlocked_door.close
 		expect(open_unlocked_door.is_open).must_equal(false)
+	end
+
+	it "cannot be closed if it is already closed" do
+		expect(proc{default_door.close}).must_raise(RuntimeError)
 	end
 
 
@@ -59,7 +72,8 @@ describe SkipBeat::Door do
 		expect(closed_unlocked_door.is_locked).must_equal(true)
 	end
 
-
-	
+	it "cannot be locked if it is already locked" do
+		expect(proc{default_door.lock}).must_raise(RuntimeError)
+	end
 
 end

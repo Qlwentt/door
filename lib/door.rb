@@ -35,4 +35,12 @@ class SkipBeat::Door
 			raise "This door is already closed"
 		end
 	end
+
+	def lock
+		unless is_locked
+			@is_locked=true
+		else
+			raise "This door is already locked"
+		end
+	end
 end

@@ -49,14 +49,12 @@ describe SkipBeat::Door do
 	end
 
 	it "can be closed if it is open" do
-		skip
 		open_unlocked_door.close
 		expect(open_unlocked_door.is_open).must_equal(false)
 	end
 
 
 	it "can be locked if it is unlocked" do
-		skip
 		closed_unlocked_door.lock
 		expect(closed_unlocked_door.is_locked).must_equal(true)
 	end

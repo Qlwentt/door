@@ -5,6 +5,7 @@ describe SkipBeat::Door do
 	let(:default_door){SkipBeat::Door.new("you shall not pass")}
 	let(:closed_unlocked_door){SkipBeat::Door.new(false,false,"closed unlocked")}
 	let(:open_unlocked_door){SkipBeat::Door.new(true,false,"unlocked open")}
+	let(:no_inscrp){SkipBeat::Door.new("")}
 
 	it "can display an inscrption" do
 		expect(default_door.inscription).must_equal("you shall not pass")
@@ -74,6 +75,10 @@ describe SkipBeat::Door do
 
 	it "cannot be locked if it is already locked" do
 		expect(proc{default_door.lock}).must_raise(RuntimeError)
+	end
+
+	it "says there is no inscrption if inscr. is empty string" do
+		expect(no_inscrp.inscription).must_equal("There is no inscription on this door")
 	end
 
 end

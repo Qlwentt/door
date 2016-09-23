@@ -43,4 +43,9 @@ class SkipBeat::Door
 			raise "This door is already locked"
 		end
 	end
+
+	def inscription
+		return "There is no inscription on this door" if @inscription==""
+		return @inscription
+	end
 end
